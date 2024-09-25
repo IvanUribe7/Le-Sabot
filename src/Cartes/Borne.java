@@ -2,8 +2,10 @@ package Cartes;
 
 public class Borne extends Cartes {
 
-	public Borne() {
-		// TODO Auto-generated constructor stub
+	private int km ;
+		
+	public Borne(int km) {
+		this.km = km;
 	}
 
 }

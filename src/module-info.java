@@ -4,5 +4,5 @@
 /**
  * 
  */
-module LeSabot {
+module Le_Sabot {
 }
