@@ -17,5 +17,17 @@ public enum Type {
 		this.botte = botte;
 	}
 
+	public String getAttaque() {
+		return attaque;
+	}
+
+	public String getParade() {
+		return parade;
+	}
+
+	public String getBotte() {
+		return botte;
+	}
+
 
 }

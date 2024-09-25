@@ -2,8 +2,15 @@ package Cartes;
 
 public class Parade extends Bataille {
 
-	public Parade() {
-		// TODO Auto-generated constructor stub
+	private Type type;
+	
+	public Parade(Type type) {
+		super(type);
 	}
+	
+	 @Override
+	    public String toString() {
+	        return "Parade: " + type.getParade();
+	    }
 
 }
