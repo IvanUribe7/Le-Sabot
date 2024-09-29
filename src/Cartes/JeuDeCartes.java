@@ -6,38 +6,72 @@ public class JeuDeCartes {
 	
     public JeuDeCartes() {
         this.configuration = new Configuration[]{
-                new Configuration(new Cartes("25KM"), 10),
-                new Configuration(new Cartes("50KM"), 10),
-                new Configuration(new Cartes("75KM"), 10),
-                new Configuration(new Cartes("100KM"), 12),
-                new Configuration(new Cartes("200KM"), 4),
-                new Configuration(new Cartes("Feu Vert"), 14),
-                new Configuration(new Cartes("Fin Limite"), 6),
-                new Configuration(new Cartes("Bidon d'essence"), 6),
-                new Configuration(new Cartes("Roue de secours"), 6),
-                new Configuration(new Cartes("Réparation"), 6),
-                new Configuration(new Cartes("Feu Rouge"), 5),
-                new Configuration(new Cartes("Limite 50"), 4),
-                new Configuration(new Cartes("Panne d'essence"), 3),
-                new Configuration(new Cartes("Crevaison"), 3),
-                new Configuration(new Cartes("Accident"), 3),
-                new Configuration(new Cartes("Prioritaire"), 1),
-                new Configuration(new Cartes("Citerne"), 1),
-                new Configuration(new Cartes("Increvable"), 1),
-                new Configuration(new Cartes("As du volant"), 1)
+        		new Configuration(new Borne(25), 10),
+                new Configuration(new Borne(50), 10),
+                new Configuration(new Borne(75), 10),
+                new Configuration(new Borne(100), 12),
+                new Configuration(new Borne(200), 4),
+                new Configuration(new Attaque(Type.FEU), 5),
+                new Configuration(new Parade(Type.FEU), 14),
+                new Configuration(new Botte(Type.FEU), 1),
+                new Configuration(new Attaque(Type.ESSENCE), 3),
+                new Configuration(new Parade(Type.ESSENCE), 6),
+                new Configuration(new Botte(Type.ESSENCE), 1),
+                new Configuration(new Attaque(Type.CREVAISON), 3),
+                new Configuration(new Parade(Type.CREVAISON), 6),
+                new Configuration(new Botte(Type.CREVAISON), 1),
+                new Configuration(new Attaque(Type.ACCIDENT), 3),
+                new Configuration(new Parade(Type.ACCIDENT), 6),
+                new Configuration(new Botte(Type.ACCIDENT), 1),
+                new Configuration(new DebutLimite(), 4),
+                new Configuration(new FinLimite(), 6)
         };
     }
 
     public String affichageJeuDeCartes() {
-        StringBuilder sb = new StringBuilder("JEU:\n");
-        for (Configuration config : configuration) {
-            sb.append(config.getNbExemplaires())
-                    .append(" ")
-                    .append(config.getCarte())
-                    .append("\n");
-        }
-        return sb.toString();
-    }
+    		
+    		StringBuilder sb = new StringBuilder();
+
+    	    for (Configuration config : this.configuration) {
+    	    	
+    	        Object carte = config.getCarte(); 
+    	        
+    	        int nbExemplaires = config.getNbExemplaires(); 
+
+    	        if (carte instanceof Borne) {
+    	            Borne borne = (Borne) carte;
+    	            sb.append( nbExemplaires + " " + borne.getKm() + " KM "  + "\n");
+    	            
+    	        } else if (carte instanceof Attaque) {
+    	     
+    	            Attaque attaque = (Attaque) carte;
+    	            sb.append(nbExemplaires + " " + attaque.getType().getAttaque() + "\n");
+    	            
+    	        } else if (carte instanceof Parade) {
+    	         
+    	            Parade parade = (Parade) carte;
+    	            sb.append(nbExemplaires + " " + parade.getType().getParade() + "\n");
+    	            
+    	        } else if (carte instanceof Botte) {
+    	        
+    	            Botte botte = (Botte) carte;
+    	            sb.append(nbExemplaires + " " + botte.getType().getBotte() + "\n");
+    	            
+    	        } else if (carte instanceof DebutLimite) {
+    	
+    	        	sb.append(nbExemplaires + " Limite 50" + "\n");
+    	        
+    	        } else{
+    
+    	        	sb.append(nbExemplaires + " Fin Limite" + "\n");    	    
+    	        	
+    	      }
+    	}
+    	    
+    	    System.out.println(sb.toString());
+    	    return "\n";
+
+    }	
 	
 	
 
@@ -61,8 +95,18 @@ public class JeuDeCartes {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		JeuDeCartes jdC = new JeuDeCartes();
+		jdC.affichageJeuDeCartes();
 
 	}
+
+	public boolean checkCount() {
+        int totalCartes = 0;
+
+        for (Configuration config : this.configuration) {
+            totalCartes += config.getNbExemplaires(); 
+        }
+        return totalCartes == 106;
+    }
 
 }
