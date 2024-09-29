@@ -1,10 +1,11 @@
 package jeu;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 import Cartes.*;
 
-public class Sabot {
+public class Sabot implements Iterable<Cartes>{
 
     private Cartes[] cartes;  
     private int nbCartes;   
@@ -25,6 +26,10 @@ public class Sabot {
         }
         cartes[nbCartes] = carte;
         nbCartes++;
+    }
+    
+    public Iterator<Cartes> iterator() {
+        return new SabotIterator();
     }
 
 }
