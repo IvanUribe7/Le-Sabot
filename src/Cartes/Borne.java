@@ -11,5 +11,10 @@ public class Borne extends Cartes {
 	public int getKm() {
 		return km;
 	}
+	
+	@Override
+	 public String toString() {
+	     return this.getKm() + "KM";
+	 }
 
 }

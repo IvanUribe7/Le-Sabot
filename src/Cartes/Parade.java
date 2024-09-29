@@ -6,11 +6,12 @@ public class Parade extends Bataille {
 	
 	public Parade(Type type) {
 		super(type);
+		this.type = type;
 	}
 	
 	 @Override
-	    public String toString() {
-	        return "Parade: " + type.getParade();
-	    }
+	 public String toString() {
+	     return type.getParade();
+	 }
 
 }

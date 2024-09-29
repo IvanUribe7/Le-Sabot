@@ -6,11 +6,12 @@ public class Botte extends Probleme {
 
     public Botte(Type type) {
         super(type);
+        this.type = type;
     }
 
     @Override
     public String toString() {
-        return "Botte: " + type.getBotte();
+        return type.getBotte();
     }
 	
 }

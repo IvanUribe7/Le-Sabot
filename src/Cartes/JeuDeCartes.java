@@ -38,24 +38,9 @@ public class JeuDeCartes {
     	        
     	        int nbExemplaires = config.getNbExemplaires(); 
 
-    	        if (carte instanceof Borne) {
-    	            Borne borne = (Borne) carte;
-    	            sb.append( nbExemplaires + " " + borne.getKm() + " KM "  + "\n");
-    	            
-    	        } else if (carte instanceof Attaque) {
+    	       if (carte instanceof FinLimite) {
     	     
-    	            Attaque attaque = (Attaque) carte;
-    	            sb.append(nbExemplaires + " " + attaque.getType().getAttaque() + "\n");
-    	            
-    	        } else if (carte instanceof Parade) {
-    	         
-    	            Parade parade = (Parade) carte;
-    	            sb.append(nbExemplaires + " " + parade.getType().getParade() + "\n");
-    	            
-    	        } else if (carte instanceof Botte) {
-    	        
-    	            Botte botte = (Botte) carte;
-    	            sb.append(nbExemplaires + " " + botte.getType().getBotte() + "\n");
+    	            sb.append(nbExemplaires + " Fin Limite" + "\n");    	 
     	            
     	        } else if (carte instanceof DebutLimite) {
     	
@@ -63,7 +48,7 @@ public class JeuDeCartes {
     	        
     	        } else{
     
-    	        	sb.append(nbExemplaires + " Fin Limite" + "\n");    	    
+    	        	sb.append(nbExemplaires + " " + carte.toString() + "\n");
     	        	
     	      }
     	}

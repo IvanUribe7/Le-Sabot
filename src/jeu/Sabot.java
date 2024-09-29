@@ -76,5 +76,16 @@ public class Sabot implements Iterable<Cartes>{
             expectedModCount = modCount;  
         }
     }
+    
+
+	    public Cartes piocher() {
+	        Iterator<Cartes> it = this.iterator();
+	        if (!it.hasNext()) {
+	            return null;
+	        }
+	        Cartes premiereCarte = it.next();  
+	        it.remove();  
+	        return premiereCarte;
+	    }
 
 }
