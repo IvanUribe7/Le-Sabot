@@ -36,8 +36,7 @@ public class Sabot implements Iterable<Cartes>{
     }
     
     private class SabotIterator implements Iterator<Cartes> {
-        private int index = 0;
-        private boolean lastRetired = false; 
+        private int index;
         private int expectedModCount = modCount; 
 
         @Override
@@ -50,30 +49,28 @@ public class Sabot implements Iterable<Cartes>{
             if (expectedModCount != modCount) {
                 throw new ConcurrentModificationException("Le sabot a été modifié pendant l'itération.");
             }
-            if (!hasNext()) {
-                throw new NoSuchElementException("Pas de carte suivante.");
-            }
-            lastRetired = false;
+            
             return cartes[index++];
         }
 
-        @Override
+
+		@Override
         public void remove() throws ConcurrentModificationException,IllegalStateException{
         	
         	if (expectedModCount != modCount) {
                 throw new ConcurrentModificationException("Le sabot a été modifié pendant l'itération.");
             }
-            if (index == 0 || lastRetired) {
+            if (index == 0) {
                 throw new IllegalStateException("Impossible de retirer la carte.");
             }
-            
-            for (int i = index - 1; i < nbCartes - 1; i++) {
+       
+            int removeIndex = index - 1;   
+            for (int i = removeIndex; i < nbCartes - 1; i++) {
                 cartes[i] = cartes[i + 1];
             }
-            cartes[--nbCartes] = null;
-            lastRetired = true;
-            modCount++;
-            expectedModCount = modCount;  
+            nbCartes--;
+            index--;     
+            cartes[nbCartes] = null; 
         }
     }
     
@@ -81,6 +78,7 @@ public class Sabot implements Iterable<Cartes>{
 	    public Cartes piocher() {
 	        Iterator<Cartes> it = this.iterator();
 	        if (!it.hasNext()) {
+	        	System.out.println("Le sabot est vide");
 	            return null;
 	        }
 	        Cartes premiereCarte = it.next();  

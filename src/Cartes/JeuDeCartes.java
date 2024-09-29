@@ -38,20 +38,9 @@ public class JeuDeCartes {
     	        
     	        int nbExemplaires = config.getNbExemplaires(); 
 
-    	       if (carte instanceof FinLimite) {
-    	     
-    	            sb.append(nbExemplaires + " Fin Limite" + "\n");    	 
-    	            
-    	        } else if (carte instanceof DebutLimite) {
-    	
-    	        	sb.append(nbExemplaires + " Limite 50" + "\n");
-    	        
-    	        } else{
-    
-    	        	sb.append(nbExemplaires + " " + carte.toString() + "\n");
+    	        sb.append(nbExemplaires + " " + carte.toString() + "\n");
     	        	
     	      }
-    	}
     	    
     	    System.out.println(sb.toString());
     	    return "\n";
