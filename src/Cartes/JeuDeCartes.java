@@ -47,7 +47,6 @@ public class JeuDeCartes {
 
     }	
 	
-	
 
 	private static class Configuration {
 
@@ -72,15 +71,32 @@ public class JeuDeCartes {
 		JeuDeCartes jdC = new JeuDeCartes();
 		jdC.affichageJeuDeCartes();
 
-	}
-
-	public boolean checkCount() {
-        int totalCartes = 0;
-
-        for (Configuration config : this.configuration) {
-            totalCartes += config.getNbExemplaires(); 
-        }
-        return totalCartes == 106;
+	}	
+	
+    public Cartes[] donnerCartes() {
+    	int i = 0;
+    	Cartes[] cartes = new Cartes[106];   
+    	JeuDeCartes jDC = new JeuDeCartes();
+    	for (Configuration config : jDC.configuration) {
+            int nbExemplaires = config.getNbExemplaires(); 
+            
+            for (int j = 0; j < nbExemplaires;j++, i++) {
+            	
+            	cartes[i] = config.getCarte();
+            	
+            }    		
+            
+    	}
+    	
+    	return cartes;
+    	
     }
-
+    
+    
+	public boolean checkCount() {
+		Cartes[] cartes = donnerCartes();
+        return cartes.length == 106;
+    }
+	
+	
 }
