@@ -95,7 +95,20 @@ public class JeuDeCartes {
     
 	public boolean checkCount() {
 		Cartes[] cartes = donnerCartes();
-        return cartes.length == 106;
+		Cartes[] cartes2 = new Cartes[106];
+		int index = 0;
+		for (Configuration config : configuration) {
+            for (int i = 0; i < config.getNbExemplaires(); i++) {
+                cartes2[index++] = config.getCarte(); 
+            }
+        }
+		for (int i = 0; i < cartes2.length; i++) {
+			if(!(cartes2[i].toString()).equals(cartes[i].toString())) 
+				return false;
+        }
+	
+        return true;
+        
     }
 	
 	
