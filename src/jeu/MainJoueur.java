@@ -19,6 +19,19 @@ public class MainJoueur {
         assert this.cartesEnMain.contains(carte) : "La carte doit être présente dans la main";
         this.cartesEnMain.remove(carte);
     }
-}
+    
+    @Override
+    public String toString() {
+    	StringBuilder sb = new StringBuilder();
+        sb.append("Cartes en main: ");
+        for (Cartes carte : cartesEnMain) {
+            sb.append(carte.toString()).append(", ");
+        }
+        if (sb.length() > 0) {
+            sb.delete(sb.length() - 2, sb.length());
+        }
+        return sb.toString();
+    }
+
 
 }
