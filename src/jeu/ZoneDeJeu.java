@@ -67,8 +67,20 @@ public class ZoneDeJeu {
 	}
 	
 	public boolean peutAvancer() {
-	    return !pileDiteDeBataille.isEmpty() && pileDiteDeBataille.get(pileDiteDeBataille.size() - 1) instanceof Cartes FEU_VERT;
+	    return !pileDiteDeBataille.isEmpty() && pileDiteDeBataille.get(pileDiteDeBataille.size() - 1) instanceof Carte FEU_VERT;
 	}
+	
+	public boolean estDepotFeuVertAutorise() {
+	    if (pileDiteDeBataille.isEmpty()) {
+	        return true; 
+	    }
+
+	    Cartes sommet = pileDiteDeBataille.get(pileDiteDeBataille.size() - 1);
+
+	    return sommet instanceof Attaque && sommet.equals(Carte.FEU_ROUGE) ||
+	           (sommet instanceof Parade && !sommet.equals(Carte.FEU_VERT));
+	}
+
 
 
 }
