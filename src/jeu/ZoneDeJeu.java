@@ -28,7 +28,7 @@ public class ZoneDeJeu {
 
 	public int donnerLimitationVitesse() {
 		
-		if(pileLimitesEtFin.isEmpty() || pileLimitesEtFin.get(0) instanceof FinLimite) {
+		if(pileLimitesEtFin.isEmpty() || pileLimitesEtFin.get(pileLimitesEtFin.size() - 1) instanceof FinLimite) {
 			return 200;
 		}else {
 			return 50;
@@ -36,8 +36,6 @@ public class ZoneDeJeu {
 		
 	}
 	
-
-
 	public int donnerKmParcourus() {
 	    int totalKm = 0;
 	    for (Cartes carte : pileDeBornes) {
@@ -54,7 +52,7 @@ public class ZoneDeJeu {
 	        
 	        pileDeBornes.add(carte);
 	        
-	    } else if (carte instanceof Limite|| carte instanceof FinLimite) {
+	    } else if (carte instanceof DebutLimite|| carte instanceof FinLimite) {
 
 	        pileLimitesEtFin.add(carte);
 
@@ -62,8 +60,15 @@ public class ZoneDeJeu {
 
 			pileDiteDeBataille.add(carte);
 
-		}
+		} else {
+	        throw new IllegalArgumentException("Unsupported card type for deposit.");
+	    }
 
 	}
+	
+	public boolean peutAvancer() {
+	    return !pileDiteDeBataille.isEmpty() && pileDiteDeBataille.get(pileDiteDeBataille.size() - 1) instanceof Cartes FEU_VERT;
+	}
+
 
 }

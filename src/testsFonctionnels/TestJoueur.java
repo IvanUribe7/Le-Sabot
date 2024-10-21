@@ -3,8 +3,6 @@ package testsFonctionnels;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +19,7 @@ public class TestJoueur {
     public void setUp() {
         // Initialize the ZoneDeJeu and Joueur before each test
         zoneDeJeu = new ZoneDeJeu(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-        joueur = new Joueur("TestPlayer", zoneDeJeu);
+        joueur = new Joueur("TestPlayer",zoneDeJeu);
     }
 
     @Test
@@ -40,7 +38,6 @@ public class TestJoueur {
         System.out.println("Deposer carte 75 km");
         joueur.deposer(borne75);
         
-        // Verify the total kilometers
         int totalKm = joueur.donnerKmParcourus();
         System.out.println("Total des bornes : " + totalKm);
         assertEquals(150, totalKm, "The total kilometers should be 150");
@@ -49,7 +46,7 @@ public class TestJoueur {
     @Test
     public void testDeposerLimitationCards() {
         // Test depositing Limitation and FinLimite cards
-        Limite limitation = new Limite();
+        DebutLimite limitation = new DebutLimite();
         FinLimite finLimite = new FinLimite();
 
         // Initially, the speed limit should be 200
@@ -69,5 +66,6 @@ public class TestJoueur {
         System.out.println("Limite : " + limitAfterFinLimite);
         assertEquals(200, limitAfterFinLimite, "The speed limit should be 200 after depositing a FinLimite card");
     }
+
 
 }

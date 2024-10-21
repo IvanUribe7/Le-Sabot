@@ -1,7 +1,5 @@
 package jeu;
 
-import java.util.List;
-
 import Cartes.*;
 
 public class Joueur {
@@ -10,9 +8,10 @@ public class Joueur {
 	private MainJoueur mainJoueur;
 	private ZoneDeJeu zoneDeJeu;
 	
-    public Joueur(String nom) {
+	public Joueur(String nom, ZoneDeJeu zoneDeJeu) {
         this.nom = nom;
         this.mainJoueur = new MainJoueur();
+        this.zoneDeJeu = zoneDeJeu; // Initialize the zoneDeJeu
     }
 
     public MainJoueur getMainJoueur() {
