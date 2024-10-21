@@ -1,12 +1,15 @@
 package jeu;
 
-import Cartes.Cartes;
+import java.util.List;
+
+import Cartes.*;
 
 public class Joueur {
 
 	private String nom;
 	private MainJoueur mainJoueur;
-
+	private ZoneDeJeu zoneDeJeu;
+	
     public Joueur(String nom) {
         this.nom = nom;
         this.mainJoueur = new MainJoueur();
@@ -37,5 +40,15 @@ public class Joueur {
 	    this.donner(carte);
 	    return carte;
 	}
+	
+	
+	public int donnerKmParcourus() {
+        return zoneDeJeu.donnerKmParcourus(); 
+    }
+	
+	public void deposer(Cartes carte) {
+	   zoneDeJeu.deposer(carte);
+	}
+
 
 }

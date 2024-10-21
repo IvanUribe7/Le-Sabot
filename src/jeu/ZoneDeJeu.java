@@ -1,15 +1,15 @@
 package jeu;
 import java.util.List;
-import Cartes.Cartes;
+import Cartes.*;
 
 public class ZoneDeJeu {
 	
-	List<Cartes> pileLimites_Et_Fin;
+	List<Cartes> pileLimitesEtFin;
 	List<Cartes> pileDiteDeBataille;
 	List<Cartes> pileDeBornes;
 	
-	public List<Cartes> getPileLimites_Et_Fin() {
-		return pileLimites_Et_Fin;
+	public List<Cartes> getPileLimitesEtFin() {
+		return pileLimitesEtFin;
 	}
 
 	public List<Cartes> getPileDiteDeBataille() {
@@ -20,12 +20,50 @@ public class ZoneDeJeu {
 		return pileDeBornes;
 	}
 
-	public ZoneDeJeu(List<Cartes> pileLimites_Et_Fin, List<Cartes> pileDiteDeBataille, List<Cartes> pileDeBornes) {
-		this.pileLimites_Et_Fin = pileLimites_Et_Fin;
+	public ZoneDeJeu(List<Cartes> pileLimitesEtFin, List<Cartes> pileDiteDeBataille, List<Cartes> pileDeBornes) {
+		this.pileLimitesEtFin = pileLimitesEtFin;
 		this.pileDiteDeBataille = pileDiteDeBataille;
 		this.pileDeBornes = pileDeBornes;
 	}
 
+	public int donnerLimitationVitesse() {
+		
+		if(pileLimitesEtFin.isEmpty() || pileLimitesEtFin.get(0) instanceof FinLimite) {
+			return 200;
+		}else {
+			return 50;
+		}
+		
+	}
 	
+
+
+	public int donnerKmParcourus() {
+	    int totalKm = 0;
+	    for (Cartes carte : pileDeBornes) {
+	        if (carte instanceof Borne) {
+	            totalKm += ((Borne) carte).getKm();
+	        }
+	    }
+	    return totalKm;
+	}
+
+
+	public void deposer(Cartes carte) {
+	    if (carte instanceof Borne) {
+	        
+	        pileDeBornes.add(carte);
+	        
+	    } else if (carte instanceof Limite|| carte instanceof FinLimite) {
+
+	        pileLimitesEtFin.add(carte);
+
+	    }else if (carte instanceof Bataille) {
+
+			pileDiteDeBataille.add(carte);
+
+		}
+
+	}
 
 }

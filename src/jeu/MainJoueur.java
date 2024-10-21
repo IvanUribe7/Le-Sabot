@@ -16,8 +16,9 @@ public class MainJoueur {
     }
 
     public void jouer(Cartes carte) {
-        assert this.cartesEnMain.contains(carte) : "La carte doit être présente dans la main";
-        this.cartesEnMain.remove(carte);
+    	List<Cartes> cartesEnMainJoueur = this.cartesEnMain;
+        assert cartesEnMainJoueur.contains(carte);
+        cartesEnMainJoueur.remove(carte);
     }
     
     @Override
@@ -32,6 +33,10 @@ public class MainJoueur {
         }
         return sb.toString();
     }
+
+	public List<Cartes> getCartesEnMain() {
+		return cartesEnMain;
+	}
 
 
 }
